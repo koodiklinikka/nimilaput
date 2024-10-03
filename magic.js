@@ -78,7 +78,7 @@ async function handleSearch(event) {
   let i = 0;
   for (const { im, rn, dn } of results) {
     const el = document.createElement("a");
-    Object.assign(el.dataset, { im, rn, dn });
+    Object.assign(el.dataset, { im: im || "", rn: rn || "", dn: dn || "" });
     el.innerText = [rn, dn].filter(Boolean).join(" / ");
     el.onclick = handleAddFromSearchResult;
     el.href = "#";
