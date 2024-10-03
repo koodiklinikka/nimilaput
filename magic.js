@@ -71,7 +71,7 @@ function rand(a, b) {
 }
 
 async function handleSearch(event) {
-  const search = event.target.value.trim();
+  const search = event.target.value.trim().toLowerCase();
   document.getElementById("hakutulokset").innerHTML = "";
   if (!search) return;
   let results = await doSearch(search);
