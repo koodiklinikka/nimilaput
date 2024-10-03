@@ -60,7 +60,7 @@ function handleAddFromSearchResult(event) {
   event.preventDefault();
   const { im, rn, dn } = event.target.dataset;
   const el = addCard();
-  el.querySelector(".username").innerText = dn || "???";
+  el.querySelector(".username").innerText = dn ? `@${dn}` : "???";
   el.querySelector(".nimi").innerText = rn || "???";
   if (im) el.querySelector("img").src = im;
   slideCardIn(el);
