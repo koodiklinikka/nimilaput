@@ -4,15 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Koodiklinikka nimilappu generaattori</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
+    <script src="magic.js"></script>
   </head>
   <body onload="handleBoot()">
     <div class="laput">
-      <button class="lisalappu" onclick="handleAdd()">+</button>
+      <button class="lisalappu" onclick="handleClickAdd()">+</button>
+      <div class="hakulappu">
+        <input
+          type="search"
+          oninput="handleSearch(event)"
+          placeholder="Hae nimellä..."
+        />
+        <div id="hakutulokset"></div>
+      </div>
     </div>
     <template id="lappu-template">
-      <div class="lappu" ondblclick="handleYeet(event)">
+      <div class="lappu">
+        <button class="delete-btn" onclick="handleYeet(event)">
+          &times; Poista
+        </button>
         <div style="text-align: center">
           <figure>
             <input type="file" onchange="handleUpload(event)" />

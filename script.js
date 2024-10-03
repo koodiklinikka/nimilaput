@@ -30,22 +30,60 @@ const handleDragOver = (e) => {
   e.preventDefault();
 };
 
-const handleAdd = () => {
+function slideCardIn(node) {
+  node.animate(
+    [
+      { opacity: 0, transform: "translateY(-10%)" },
+      { opacity: 1, transform: "" },
+    ],
+    {
+      duration: 200,
+      fill: "both",
+      easing: "ease-out",
+    },
+  );
+}
+
+function slideCardOut(node) {
+  return new Promise((resolve) => {
+    const anim = node.animate(
+      [
+        { opacity: 1, transform: "" },
+        { opacity: 0, transform: "translateY(40%)" },
+      ],
+      {
+        duration: 200,
+        fill: "both",
+        easing: "ease-in",
+      },
+    );
+    anim.onfinish = resolve;
+  });
+}
+
+function addCard() {
   const laput = document.querySelector(".laput");
   const template = document.querySelector("#lappu-template");
   const lisalappuButton = document.querySelector(".lisalappu");
-  const clone = template.content.cloneNode(true);
-  laput.insertBefore(clone, lisalappuButton);
+  const clone = template.content.firstElementChild.cloneNode(true);
+  return laput.insertBefore(clone, lisalappuButton);
+}
+
+const handleClickAdd = () => {
+  const node = addCard();
+  slideCardIn(node);
 };
 
-const handleYeet = (event) => {
-  const lappu = event.target;
-  if (lappu.classList.contains("lappu")) {
+async function handleYeet(event) {
+  const lappu = event.target.closest(".lappu");
+  if (lappu) {
+    await slideCardOut(lappu);
     lappu.parentNode.removeChild(lappu);
     event.preventDefault();
   }
-};
+}
 
 const handleBoot = () => {
-  handleAdd();
+  addCard();
+  document.querySelector(".hakulappu").hidden = !window.crypto.subtle;
 };

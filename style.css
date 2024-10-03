@@ -1,14 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-}
-
-body {
-    margin: 10mm;
-    font-family: Inter,
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family:
+    Inter,
     system-ui,
     -apple-system,
     BlinkMacSystemFont,
@@ -22,76 +19,124 @@ body {
     sans-serif;
 }
 
+body {
+  margin: 10mm;
+}
+
 .laput {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5mm;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5mm;
+}
+
+.laput > * {
+  width: 85mm;
+  height: 54mm;
 }
 
 .lisalappu {
-    width: 85mm;
-    height: 54mm;
-    color: #aaa;
-    background: transparent;
-    border: 1px dashed #aaa;
-    font-size: 3em;
-    cursor: pointer;
+  color: #aaa;
+  background: transparent;
+  border: 1px dashed #aaa;
+  font-size: 3em;
+  cursor: pointer;
 }
 
 .lisalappu:hover {
-    background: #f0f0f0;
+  background: #f0f0f0;
+}
+
+.hakulappu {
+  border: 1px dashed #aaa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hakulappu a {
+  color: #2475a6;
+}
+
+.hakulappu input {
+  padding: 0.5em;
+}
+
+#hakutulokset {
+  text-align: center;
+  font-size: 80%;
+  padding: 0.5em;
+}
+
+.hakutulos {
+  display: block;
+  padding: 2px;
 }
 
 @media print {
-    .lisalappu {
-        display: none;
-    }
+  .lisalappu,
+  .hakulappu {
+    display: none;
+  }
 
-    body {
-        margin: unset;
-    }
+  body {
+    margin: unset;
+  }
 
-    input {
-        display: none;
-    }
+  input {
+    display: none;
+  }
 }
 
 .lappu {
-    width: 85mm;
-    height: 54mm;
-    border: 1px solid black;
-    padding: 10mm;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  border: 1px solid black;
+  padding: 10mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .lappu figure {
-    position: relative;
-    user-select: none;
-    width: 30%;
-    aspect-ratio: 1/1;
-    margin: 0 auto;
-    border-radius: 100%;
-    overflow: hidden;
+  position: relative;
+  user-select: none;
+  width: 30%;
+  aspect-ratio: 1/1;
+  margin: 0 auto;
+  border-radius: 100%;
+  overflow: hidden;
 }
 
 .lappu figure input {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
 }
 
 .lappu .username {
-    font-size: 16px;
-    font-weight: 400;
-    opacity: 0.8;
-    margin-top: 0.5rem;
+  font-size: 16px;
+  font-weight: 400;
+  opacity: 0.8;
+  margin-top: 0.5rem;
 }
 
 .lappu .nimi {
-    font-size: 21px;
-    margin-top: 1rem;
+  font-size: 21px;
+  margin-top: 1rem;
+}
+
+.delete-btn {
+  position: absolute;
+  left: 0.1em;
+  top: 0.1em;
+  padding: 0.25em;
+  display: none;
+  border: 1px dotted crimson;
+  background: transparent;
+  cursor: pointer;
+}
+.lappu:hover .delete-btn {
+  display: block;
 }
