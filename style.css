@@ -38,12 +38,16 @@ body {
   color: #aaa;
   background: transparent;
   border: 1px dashed #aaa;
-  font-size: 3em;
   cursor: pointer;
+}
+.lisalappu>span {
+  display: block;
+  font-size: 3rem;
 }
 
 .lisalappu:hover {
   background: #f0f0f0;
+  color: #333;
 }
 
 .hakulappu {
