@@ -26,10 +26,15 @@ async function aesCbcDecrypt(base64Bytes, key) {
 
 async function loadMagic() {
   if (!magicProm) {
-    magicProm = fetch("./magic.json")
-      .then((r) => {
+    magicProm = fetch("./magic-2026.json")
+      .then(async (r) => {
         if (!r.ok) {
           throw new Error(`Failed to load magic.json`);
+        }
+        try {
+          await sha256("test"); // Test for SHA-256
+        } catch (e) {
+          throw new Error("SHA-256 not supported, running in secure context?");
         }
         return r.json();
       })
@@ -41,7 +46,7 @@ async function loadMagic() {
 async function doSearch(search) {
   const res = [];
   const db = await loadMagic();
-  const ents = db.get(toBase64(await sha256("kk2024~" + search)));
+  const ents = db.get(toBase64(await sha256("20kk26~" + search)));
   if (!ents) return [];
   let decKeyBits = new Array(search.length).fill(search).join("x");
   const decKey = await sha256(decKeyBits);

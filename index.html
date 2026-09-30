@@ -6,14 +6,12 @@
     <title>Koodiklinikka nimilappu generaattori</title>
     <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
-    <!--<script src="magic.js"></script>-->
+    <script src="magic.js"></script>
   </head>
   <body onload="handleBoot()">
     <div class="laput">
-      <button class="lisalappu" onclick="handleClickAdd()">
-        <span>+</span>Tyhjä lappu
-      </button>
-      <div class="hakulappu" style="display: none">
+      <button class="lisalappu" onclick="handleClickAdd()">+</button>
+      <div class="hakulappu">
         <input
           type="search"
           oninput="handleSearch(event)"
