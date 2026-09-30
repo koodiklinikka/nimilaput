@@ -38,7 +38,11 @@ async function loadMagic() {
         }
         return r.json();
       })
-      .then((data) => new Map(data));
+      .then((data) => new Map(data))
+      .catch((e) => {
+        magicProm = null;
+        throw e;
+      });
   }
   return magicProm;
 }
@@ -75,11 +79,19 @@ function rand(a, b) {
   return a + Math.random() * (b - a);
 }
 
+let searchSeq = 0;
+
 async function handleSearch(event) {
-  const search = event.target.value.trim().toLowerCase();
+  const seq = ++searchSeq;
+  const search = event.target.value
+    .normalize("NFKD")
+    .replace(/[^\x00-\x7f]/g, "")
+    .trim()
+    .toLowerCase();
   document.getElementById("hakutulokset").innerHTML = "";
   if (!search) return;
   let results = await doSearch(search);
+  if (seq !== searchSeq) return;
   let i = 0;
   for (const { im, rn, dn } of results) {
     const el = document.createElement("a");
