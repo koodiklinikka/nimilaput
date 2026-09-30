@@ -40,7 +40,7 @@ body {
   border: 1px dashed #aaa;
   cursor: pointer;
 }
-.lisalappu>span {
+.lisalappu > span {
   display: block;
   font-size: 3rem;
 }
