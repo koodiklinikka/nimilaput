@@ -64,9 +64,13 @@ async function handleRandomEmoji(event, kind) {
   event.preventDefault();
   const img = event.target.closest(".lappu").querySelector("figure img");
   const data = await loadEmojiData();
-  const src =
-    kind === "kitchen"
-      ? randomKitchenUrl(data)
-      : notoEmojiUrl(randomChoice(data.emoji));
+  let src;
+  if (kind === "kitchen") {
+    src = randomKitchenUrl(data);
+  } else if (kind === "kk") {
+    src = data.kkPrefix + randomChoice(data.kk);
+  } else {
+    src = notoEmojiUrl(randomChoice(data.emoji));
+  }
   setCardImage(img, src, { emoji: true });
 }

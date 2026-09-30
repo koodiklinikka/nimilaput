@@ -111,8 +111,18 @@ body {
   overflow: hidden;
 }
 
+.lappu figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .lappu figure.emoji {
   border-radius: 0;
+}
+
+.lappu figure.emoji img {
+  object-fit: contain;
 }
 
 /* Without an image, only show a placeholder while editing, so it won't print */
