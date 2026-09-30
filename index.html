@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
     <script src="magic.js"></script>
+    <script src="emoji.js"></script>
   </head>
   <body onload="handleBoot()">
     <div class="laput">
@@ -22,14 +23,22 @@
     </div>
     <template id="lappu-template">
       <div class="lappu">
-        <button class="delete-btn" onclick="handleYeet(event)">
-          &times; Poista
-        </button>
+        <div class="card-buttons">
+          <button class="delete-btn" onclick="handleYeet(event)">
+            &times; Poista
+          </button>
+          <button onclick="handleRandomEmoji(event, 'noto')">🎲 Emoji</button>
+          <button onclick="handleRandomEmoji(event, 'kitchen')">
+            🎲 Kitchen
+          </button>
+          <button class="clear-image-btn" onclick="handleClearImage(event)">
+            Tyhjennä kuva
+          </button>
+        </div>
         <div style="text-align: center">
-          <figure>
+          <figure class="empty">
             <input type="file" onchange="handleUpload(event)" />
             <img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M/wHwAEBgIApD5fRAAAAABJRU5ErkJggg=="
               alt="Matti Meikäläinen"
               style="width: 100%; height: 100%; object-fit: cover"
               onDrop="handleDrop(event)"

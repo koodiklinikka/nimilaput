@@ -111,6 +111,19 @@ body {
   overflow: hidden;
 }
 
+.lappu figure.emoji {
+  border-radius: 0;
+}
+
+/* Without an image, only show a placeholder while editing, so it won't print */
+.lappu figure.empty img {
+  visibility: hidden;
+}
+
+.lappu:hover figure.empty {
+  background: #0f0;
+}
+
 .lappu figure input {
   position: absolute;
   width: 100%;
@@ -131,16 +144,27 @@ body {
   margin-top: 1rem;
 }
 
-.delete-btn {
+.card-buttons {
   position: absolute;
   left: 0.1em;
+  right: 0.1em;
   top: 0.1em;
-  padding: 0.25em;
   display: none;
-  border: 1px dotted crimson;
+  flex-wrap: wrap;
+  gap: 0.25em;
+}
+.lappu:hover .card-buttons {
+  display: flex;
+}
+.card-buttons button {
+  padding: 0.25em;
+  border: 1px dotted #2475a6;
   background: transparent;
   cursor: pointer;
 }
-.lappu:hover .delete-btn {
-  display: block;
+.card-buttons .delete-btn {
+  border-color: crimson;
+}
+.lappu:has(figure.empty) .clear-image-btn {
+  display: none;
 }

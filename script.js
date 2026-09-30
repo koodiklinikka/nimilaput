@@ -1,9 +1,20 @@
+function setCardImage(img, src, { emoji = false } = {}) {
+  const figure = img.closest("figure");
+  figure.classList.toggle("empty", !src);
+  figure.classList.toggle("emoji", emoji);
+  if (src) {
+    img.src = src;
+  } else {
+    img.removeAttribute("src");
+  }
+}
+
 function handleImage(file, element) {
   if (file && file.type.startsWith("image/")) {
     const reader = new FileReader();
     reader.onload = (event) => {
       if (event.target) {
-        element.src = event.target.result;
+        setCardImage(element, event.target.result);
       }
     };
     reader.readAsDataURL(file);
@@ -73,6 +84,14 @@ const handleClickAdd = () => {
   const node = addCard();
   slideCardIn(node);
 };
+
+function handleClearImage(event) {
+  event.preventDefault();
+  const figure = event.target.closest(".lappu").querySelector("figure");
+  setCardImage(figure.querySelector("img"), null);
+  // Allow re-uploading the same file
+  figure.querySelector("input").value = "";
+}
 
 async function handleYeet(event) {
   const lappu = event.target.closest(".lappu");
